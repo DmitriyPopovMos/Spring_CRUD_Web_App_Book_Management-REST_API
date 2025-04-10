@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">      <!-- это объявление пространства имён для атрибутов th* в шаблоне Thymeleaf -->
+<head>
+    <meta charset="UTF-8">
+    <title>Book List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+
+<body style="padding: 25px; background: darkkhaki">
+
+    <h1>Book List</h1>                                      <!-- <h1></h1> заголовок 1-го уровня-->
+
+        <table class="table table-hover" style="width: 50%" >        <!-- <table> начало таблицы-->
+            <thead>                                         <!-- <thead> начало шапки таблицы, внутри него могут располагаться одна или более строк с заголовками таблицы-->
+            <tr>                                            <!-- <tr> начало строки в таблице-->
+                <th>Id</th>                                 <!-- <th>Id</th> заголовок столбца в таблице-->
+                <th>Vendor Code</th>                        <!-- <th>Vendor Code</th> заголовок столбца в таблице-->
+                <th>Title</th>                              <!-- <th>Title</th> заголовок столбца в таблице-->
+                <th>Year</th>                               <!-- <th>Year</th> заголовок столбца в таблице-->
+                <th>Brand</th>                              <!-- <th>Brand</th> заголовок столбца в таблице-->
+                <th>Stock</th>                              <!-- <th>Stock</th> заголовок столбца в таблице-->
+                <th>Price</th>                              <!-- <th>Price</th> заголовок столбца в таблице-->
+            </tr>                                           <!-- </>tr> конец строки в таблице-->
+            </thead>                                        <!-- </thead> конец шапки таблицы, внутри него могут располагаться одна или более строк с заголовками таблицы-->
+            <tbody>                                         <!-- <tbody> отделяет основной контент от "заголовка" и «подвала» таблицы -->
+            <tr th:each="book : ${books}">                  <!-- <tr> начало строки в таблице-->
+                <td th:text="${book.id}"></td>              <!-- <td></td> столбец в таблице-->
+                <td th:text="${book.vendorCode}"></td>      <!-- <td></td> столбец в таблице-->
+                <td th:text="${book.title}"></td>           <!-- <td></td> столбец в таблице-->
+                <td th:text="${book.year}"></td>            <!-- <td></td> столбец в таблице-->
+                <td th:text="${book.brand}"></td>           <!-- <td></td> столбец в таблице-->
+                <td th:text="${book.stock}"></td>           <!-- <td></td> столбец в таблице-->
+                <td th:text="${book.price}"></td>           <!-- <td></td> столбец в таблице-->
+
+
+                 <td><a th:href="@{book-update/{id}(id=${book.id})}">
+                    <button type="button" class="btn btn-warning btn-sm">Edit</button></a></td>    <!--Вариант ссылки в виде кнопки-->
+
+                  <td><a th:href="@{book-delete/{id}(id=${book.id})}"
+                       onclick="if(!(confirm('Are you sure you want to delete this Book?'))) return false">
+                    <button type="button" class="btn btn-danger btn-sm">Delete</button></a></td>       <!--Вариант ссылки в виде кнопки-->
+                                                                                                       <!-- onclick= запускает выполнение скрипта при нажатии на элемент -->
+                                                                                                       <!-- if(!действие) return false -->
+                                                                                                       <!-- confirm() - функция в HTML для создания диалога подтверждения -->
+            </tr>                                           <!-- </>tr> конец строки в таблице-->
+            </tbody>                                        <!-- <tbody> отделяет основной контент от "заголовка" и «подвала» таблицы -->
+        </table>                                            <!-- </table> конец таблицы-->
+
+    <div>                                                   <!-- <div></div> нейтральный блок -->
+        <p><a href="addBookPage"><button type="button" class="btn btn-success btn-sm">Add book</button></a></p>           <!--Вариант ссылки в виде кнопки-->
+<!--        <p><a href="addBookFilterForm"><button type="button" class="btn btn-dark btn-sm">Book Filter</button></a></p>        &lt;!&ndash;Вариант ссылки в виде кнопки&ndash;&gt;-->
+    </div>                                                   <!-- <div></div> нейтральный блок -->
+
+</body>
+</html>
