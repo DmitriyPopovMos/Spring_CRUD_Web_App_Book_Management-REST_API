@@ -53,4 +53,16 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
+    // Фильтры поиска:
+    public List<Book> searchBooksTitle(String query) {   // собственный фильтр iLIKE '%title%'
+        return bookRepository.searchBooksTitle(query);
+    }
+
+    public List<Book> searchBooksBrand(String query) {   // собственный фильтр iLIKE '%brand%'
+        return bookRepository.searchBooksBrand(query);
+    }
+
+    public List<Book> searchBooksYear(String query) {   // собственный фильтр iLIKE year
+        return bookRepository.searchBooksYear(query);
+    }
 }

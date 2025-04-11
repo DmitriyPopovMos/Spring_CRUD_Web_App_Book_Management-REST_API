@@ -10,7 +10,34 @@
 
     <h1>Book List</h1>                                      <!-- <h1></h1> заголовок 1-го уровня-->
 
-        <table class="table table-hover" style="width: 50%" >        <!-- <table> начало таблицы-->
+        <div>
+            <form th:action="@{/book/search/title}" class="form-inline my-2 my-lg-0 mb-3" style="width: 50%">
+                <button type="submit" class="btn btn-dark btn-sm">Search</button>
+                <input name="query"
+                       class="form-control mr-sm-2 mb-1"
+                       type="search"
+                       placeholder="Search Title"
+                       aria-label="Search">
+            </form>
+            <form th:action="@{/book/search/brand}" class="form-inline my-2 my-lg-0 mb-3" style="width: 50%">
+                <button type="submit" class="btn btn-dark btn-sm">Search</button>
+                <input name="query"
+                       class="form-control mr-sm-2 mb-1"
+                       type="search"
+                       placeholder="Search Brand"
+                       aria-label="Search">
+            </form>
+            <form th:action="@{/book/search/year}" class="form-inline my-2 my-lg-0 mb-3" style="width: 50%">
+                <button type="submit" class="btn btn-dark btn-sm">Search</button>
+                <input name="query"
+                       class="form-control mr-sm-2 mb-5"
+                       type="search"
+                       placeholder="Search Year"
+                       aria-label="Search">
+            </form>
+        </div>
+
+        <table class="table table-hover" style="width: 50%">        <!-- <table> начало таблицы-->
             <thead>                                         <!-- <thead> начало шапки таблицы, внутри него могут располагаться одна или более строк с заголовками таблицы-->
             <tr>                                            <!-- <tr> начало строки в таблице-->
                 <th>Id</th>                                 <!-- <th>Id</th> заголовок столбца в таблице-->
@@ -48,7 +75,6 @@
 
     <div>                                                   <!-- <div></div> нейтральный блок -->
         <p><a href="addBookPage"><button type="button" class="btn btn-success btn-sm">Add book</button></a></p>           <!--Вариант ссылки в виде кнопки-->
-<!--        <p><a href="addBookFilterForm"><button type="button" class="btn btn-dark btn-sm">Book Filter</button></a></p>        &lt;!&ndash;Вариант ссылки в виде кнопки&ndash;&gt;-->
     </div>                                                   <!-- <div></div> нейтральный блок -->
 
 </body>
