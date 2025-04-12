@@ -62,7 +62,7 @@ public class BookService {
         return bookRepository.searchBooksBrand(query);
     }
 
-    public List<Book> searchBooksYear(String query) {   // собственный фильтр iLIKE year
+    public List<Book> searchBooksYear(String query) {   // собственный фильтр = year
         return bookRepository.searchBooksYear(query);
     }
 }
