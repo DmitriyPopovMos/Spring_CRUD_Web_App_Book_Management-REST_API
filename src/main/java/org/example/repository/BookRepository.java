@@ -14,15 +14,12 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
 
 
     // Фильтры поиска:
-    @Query("SELECT b FROM Book b WHERE b.title iLIKE CONCAT('%', :query, '%')")   // собственный фильтр iLIKE '%title%'
-    List<Book> searchBooksTitle(String query);
-                                                                        // @Query("sql_запрос_к_БД") - позволяет выполнять запросы к Базе Данных на подобии SQL (HQL, JPQL)
-                                                                        // LIKE - выводит данные содержащиеся в поиске '%тар' / 'тар%' / '%тар%' (iLIKE - игнорирует регистр)
-                                                                        // CONCAT(str1, 'char', strN) - Возвращает строку, созданную путем объединения всех аргументов.
 
-    @Query("SELECT b FROM Book b WHERE b.brand iLIKE CONCAT('%', :query, '%')")   // собственный фильтр iLIKE '%brand%'
-    List<Book> searchBooksBrand(String query);
-
-    @Query("SELECT b FROM Book b WHERE b.year = :query")                 // собственный фильтр year
-    List<Book> searchBooksYear(String query);
+    @Query("SELECT b FROM Book b WHERE b.title iLIKE CONCAT('%', :query, '%') " +   // собственный фильтр iLIKE '%TitleBrandYear%'
+            "OR b.brand iLIKE CONCAT('%', :query, '%')" +
+            " OR b.year = :query")
+    List<Book> searchBooksTitleBrandYear(String query);
+//                                                                        // @Query("sql_запрос_к_БД") - позволяет выполнять запросы к Базе Данных на подобии SQL (HQL, JPQL)
+//                                                                        // LIKE - выводит данные содержащиеся в поиске '%тар' / 'тар%' / '%тар%' (iLIKE - игнорирует регистр)
+//                                                                        // CONCAT(str1, 'char', strN) - Возвращает строку, созданную путем объединения всех аргументов.
 }

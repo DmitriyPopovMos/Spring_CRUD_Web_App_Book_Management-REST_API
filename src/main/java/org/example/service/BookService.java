@@ -35,7 +35,16 @@ public class BookService {
         return bookRepository.getById(id);
     }
 
-    public Book update(Book book) {                      // обновляем данные Book в БД
+    public Book update(BookDTO dto) {                      // обновляем данные Book в БД
+        Book book = Book.builder()
+                .id(dto.getId())
+                .vendorCode(dto.getVendorCode())
+                .title(dto.getTitle())
+                .year(dto.getYear())
+                .brand(dto.getBrand())
+                .stock(dto.getStock())
+                .price(dto.getPrice())
+                .build();
         return bookRepository.save(book);
     }
 
@@ -49,15 +58,7 @@ public class BookService {
     }
 
     // Фильтры поиска:
-    public List<Book> searchBooksTitle(String query) {   // собственный фильтр iLIKE '%title%'
-        return bookRepository.searchBooksTitle(query);
-    }
-
-    public List<Book> searchBooksBrand(String query) {   // собственный фильтр iLIKE '%brand%'
-        return bookRepository.searchBooksBrand(query);
-    }
-
-    public List<Book> searchBooksYear(String query) {   // собственный фильтр = year
-        return bookRepository.searchBooksYear(query);
+    public List<Book> searchBooksTitleBrandYear(String query) {   // собственный фильтр iLIKE '%TitleBrandYear%'
+        return bookRepository.searchBooksTitleBrandYear(query);
     }
 }

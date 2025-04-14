@@ -50,30 +50,17 @@ public class BookController {
     }
 
     @PostMapping("/book-update")                      // @PostMapping("/Путь") — Обрабатывает HTTP POST-запросы и возвращает ответ (Аналог INSERT INTO)
-    public String updateBook(Book book) {
-        bookService.update(book);                        // обновляем данные Book в БД
+    public String updateBook(BookDTO bookDTO) {
+        bookService.update(bookDTO);                     // обновляем данные Book в БД
         return "redirect:/showBooks";                    // redirect:/Путь - переадресация на указанную страницу
     }
 
 
     // Фильтры поиска:
     @GetMapping("/book/search/title")                                                       // Model - интерфейс из фреймворка Spring MVC для добавления атрибутов к модели <KEY, VALUE>. Похож на Map<K, V>
-    public String searchBooksTitle(@RequestParam(name = "query") String query, Model model) {  // @RequestParam(name = "query") - извлекает ОТДЕЛЬНЫЕ параметры из HTTP-запроса БЕЗ обработки всего тела запроса.
-        List<Book> books = bookService.searchBooksTitle(query);   // собственный фильтр iLIKE '%title%'
-        model.addAttribute("books", books);           // model.addAttribute(KEY, VALUE) - добавляет атрибут к модели
-        return "book-list-filter";
-    }
-    @GetMapping("/book/search/brand")                                                       // Model - интерфейс из фреймворка Spring MVC для добавления атрибутов к модели <KEY, VALUE>. Похож на Map<K, V>
-    public String searchBooksBrand(@RequestParam(name = "query") String query, Model model) {  // @RequestParam(name = "query") - извлекает ОТДЕЛЬНЫЕ параметры из HTTP-запроса БЕЗ обработки всего тела запроса.
-        List<Book> books = bookService.searchBooksBrand(query);    // собственный фильтр iLIKE '%brand%'
-        model.addAttribute("books", books);            // model.addAttribute(KEY, VALUE) - добавляет атрибут к модели
-        return "book-list-filter";
-    }
-
-    @GetMapping("/book/search/year")                                                       // Model - интерфейс из фреймворка Spring MVC для добавления атрибутов к модели <KEY, VALUE>. Похож на Map<K, V>
-    public String searchBooksYear(@RequestParam(name = "query") String query, Model model) {  // @RequestParam(name = "query") - извлекает ОТДЕЛЬНЫЕ параметры из HTTP-запроса БЕЗ обработки всего тела запроса.
-        List<Book> books = bookService.searchBooksYear(query);     // собственный фильтр = year
-        model.addAttribute("books", books);            // model.addAttribute(KEY, VALUE) - добавляет атрибут к модели
+    public String searchBooksTitleBrandYear(@RequestParam(name = "query") String query, Model model) {  // @RequestParam(name = "query") - извлекает ОТДЕЛЬНЫЕ параметры из HTTP-запроса БЕЗ обработки всего тела запроса.
+        List<Book> books = bookService.searchBooksTitleBrandYear(query);   // собственный фильтр iLIKE '%TitleBrandYear%'
+        model.addAttribute("books", books);                    // model.addAttribute(KEY, VALUE) - добавляет атрибут к модели
         return "book-list-filter";
     }
 }
