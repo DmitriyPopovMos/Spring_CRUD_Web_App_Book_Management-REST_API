@@ -1,25 +1,20 @@
 package org.example.controller;
 
+import lombok.RequiredArgsConstructor;
 import org.example.dto.BookDTO;
 import org.example.entity.Book;
 import org.example.service.BookService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
 @Controller                                                // @Controller - определяет классы в качестве контроллеров в Spring MVC. Помогает Spring определить компоненты, которые будут обрабатывать входящие запросы.
+@RequiredArgsConstructor                                   // @RequiredArgsConstructor — ГЕНЕРИРУЕТ конструктор для класса с полями final. НЕ ГЕНЕРИРУЕТ конструктор ДЛЯ НЕ ФИНАЛЬНЫХ полей.
 public class BookController {
 
     private final BookService bookService;
-
-    @Autowired                                             // @Autowired — используется для автоматического внедрения зависимостей (dependency injection)
-    public BookController(BookService bookService) {
-        this.bookService = bookService;
-    }
 
     @GetMapping("/showBooks")                           // @GetMapping("/Путь") - Обрабатывает HTTP GET-запросы и возвращает ответ (Аналог SELECT)
     public String findAll(Model model) {                   // Model - интерфейс из фреймворка Spring MVC для добавления атрибутов к модели <KEY, VALUE>. Похож на Map<K, V>

@@ -1,24 +1,19 @@
 package org.example.service;
 
+import lombok.RequiredArgsConstructor;
 import org.example.dto.BookDTO;
 import org.example.entity.Book;
 import org.example.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 
 @Service                                                 // @Service - указывает, что класс реализует бизнес-логику, относящуюся к определённому домену приложения.
+@RequiredArgsConstructor                                 // @RequiredArgsConstructor — ГЕНЕРИРУЕТ конструктор для класса с полями final. НЕ ГЕНЕРИРУЕТ конструктор ДЛЯ НЕ ФИНАЛЬНЫХ полей.
 public class BookService {
 
     private final BookRepository bookRepository;
-
-    @Autowired                                           // @Autowired — используется для автоматического внедрения зависимостей (dependency injection)
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     public Book create(BookDTO dto) {                    // создать новую Book в БД
         Book book = Book.builder()

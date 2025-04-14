@@ -1,10 +1,10 @@
 package org.example.filter;
 
+import lombok.AllArgsConstructor;
 import org.example.dto.RequestDto;
 import org.example.entity.Book;
 import org.example.repository.BookRepository;
 import org.example.service.FiltersSpecification;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,13 +15,11 @@ import java.util.List;
 
 
 @RestController                                              // @RestController - Обрабатывает ВСЕ входящие HTTP запросы (например от Postman).
-@RequestMapping("/filter")                                // @RequestMapping("/filter) - сопоставляет конкретный метод HTTP-запроса определённому методу Java в веб-приложении.
+@AllArgsConstructor                                          // @AllArgsConstructor - заменяет Конструктор со всеми параметрами (библиотека lombok)
+@RequestMapping("/filter")                                 // @RequestMapping("/filter) - сопоставляет конкретный метод HTTP-запроса определённому методу Java в веб-приложении.
 public class RestApiBookFilter {
 
-    @Autowired                                                // @Autowired — аннотация отмечает конструктор, поле, метод установки или метод конфигурации для автоматического связывания с помощью средств внедрения зависимостей Spring (dependency injection)
     private BookRepository bookRepository;
-
-    @Autowired                                                // @Autowired — аннотация отмечает конструктор, поле, метод установки или метод конфигурации для автоматического связывания с помощью средств внедрения зависимостей Spring (dependency injection)
     private FiltersSpecification<Book> bookFiltersSpecification;
 
 
