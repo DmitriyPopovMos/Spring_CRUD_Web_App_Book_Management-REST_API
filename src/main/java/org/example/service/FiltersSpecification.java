@@ -40,7 +40,6 @@ public class FiltersSpecification<T> {
                     case LIKE:
                         Predicate like = criteriaBuilder.like(root.get(requestDto.getColumn()), "%" + requestDto.getValue() + "%");
                         predicates.add(like);
-                        System.out.println(predicates);
                         break;
 
                     case IN:

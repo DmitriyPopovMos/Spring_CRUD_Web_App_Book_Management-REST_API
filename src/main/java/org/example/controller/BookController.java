@@ -57,10 +57,10 @@ public class BookController {
 
 
     // Фильтры поиска:
-    @GetMapping("/book/search/title")                                                       // Model - интерфейс из фреймворка Spring MVC для добавления атрибутов к модели <KEY, VALUE>. Похож на Map<K, V>
+    @GetMapping("/book/search/title")                                       // Model - интерфейс из фреймворка Spring MVC для добавления атрибутов к модели <KEY, VALUE>. Похож на Map<K, V>
     public String searchBooksTitleBrandYear(@RequestParam(name = "query") String query, Model model) {  // @RequestParam(name = "query") - извлекает ОТДЕЛЬНЫЕ параметры из HTTP-запроса БЕЗ обработки всего тела запроса.
-        List<Book> books = bookService.searchBooksTitleBrandYear(query);   // собственный фильтр iLIKE '%TitleBrandYear%'
-        model.addAttribute("books", books);                    // model.addAttribute(KEY, VALUE) - добавляет атрибут к модели
+            List<Book> books = bookService.searchBooksTitleBrandYear(query);   // собственный фильтр iLIKE '%TitleBrandYear%'
+            model.addAttribute("books", books);                    // model.addAttribute(KEY, VALUE) - добавляет атрибут к модели
         return "book-list-filter";
     }
 }

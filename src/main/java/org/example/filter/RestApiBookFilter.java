@@ -28,8 +28,6 @@ public class RestApiBookFilter {
         Specification<Book> searchSpecification = bookFiltersSpecification
                 .getSearchSpecification(requestDto.getSearchRequestDto(), requestDto.getGlobalOperator());
 
-        System.out.println(bookRepository.findAll(searchSpecification));
-
         return bookRepository.findAll(searchSpecification);
     }
 }
